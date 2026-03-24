@@ -17,6 +17,7 @@ def process_circle(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) ->
                 "INVALID_CIRCLE_RADIUS",
                 handle=entity_handle(entity),
                 dxftype=entity.dxftype(),
+                layer=entity.dxf.layer,
                 block_path=ctx.block_path,
             )
         )
@@ -29,6 +30,7 @@ def process_circle(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) ->
                 "ENTITY_NOT_IN_XY_PLANE",
                 handle=entity_handle(entity),
                 dxftype=entity.dxftype(),
+                layer=entity.dxf.layer,
                 block_path=ctx.block_path,
             )
         )
@@ -40,6 +42,7 @@ def process_circle(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) ->
                 "UNSUPPORTED_NONUNIFORM_SCALED_CIRCLE",
                 handle=entity_handle(entity),
                 dxftype=entity.dxftype(),
+                layer=entity.dxf.layer,
                 block_path=ctx.block_path,
             )
         )
@@ -52,6 +55,7 @@ def process_circle(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) ->
                 "ENTITY_NOT_IN_XY_PLANE",
                 handle=entity_handle(entity),
                 dxftype=entity.dxftype(),
+                layer=entity.dxf.layer,
                 block_path=ctx.block_path,
             )
         )

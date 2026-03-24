@@ -10,6 +10,7 @@ Vec2 = tuple[float, float]
 class SourceTrace:
     handle: Optional[str]
     dxftype: str
+    layer: str
     layout: str
     block_path: list[str] = field(default_factory=list)
 
@@ -43,6 +44,7 @@ class Diagnostic:
     message: str = ""
     handle: Optional[str] = None
     dxftype: Optional[str] = None
+    layer: Optional[str] = None
     block_path: list[str] = field(default_factory=list)
 
 

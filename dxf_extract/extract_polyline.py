@@ -27,6 +27,7 @@ def process_polyline(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) 
                 "UNSUPPORTED_POLYLINE_MODE",
                 handle=entity_handle(entity),
                 dxftype=entity.dxftype(),
+                layer=entity.dxf.layer,
                 block_path=ctx.block_path,
             )
         )
@@ -40,6 +41,7 @@ def process_polyline(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) 
                 message="Open POLYLINE skipped: closed flag required.",
                 handle=entity_handle(entity),
                 dxftype=entity.dxftype(),
+                layer=entity.dxf.layer,
                 block_path=ctx.block_path,
             )
         )
@@ -54,6 +56,7 @@ def process_polyline(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) 
                 "MALFORMED_POLYLINE",
                 handle=entity_handle(entity),
                 dxftype=entity.dxftype(),
+                layer=entity.dxf.layer,
                 block_path=ctx.block_path,
             )
         )
@@ -65,6 +68,7 @@ def process_polyline(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) 
                 "MALFORMED_POLYLINE",
                 handle=entity_handle(entity),
                 dxftype=entity.dxftype(),
+                layer=entity.dxf.layer,
                 block_path=ctx.block_path,
             )
         )
@@ -77,6 +81,7 @@ def process_polyline(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) 
                 "ENTITY_NOT_IN_XY_PLANE",
                 handle=entity_handle(entity),
                 dxftype=entity.dxftype(),
+                layer=entity.dxf.layer,
                 block_path=ctx.block_path,
             )
         )
@@ -96,6 +101,7 @@ def process_polyline(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) 
                     "UNSUPPORTED_TRANSFORMED_BULGE_POLYLINE",
                     handle=entity_handle(entity),
                     dxftype=entity.dxftype(),
+                    layer=entity.dxf.layer,
                     block_path=ctx.block_path,
                 )
             )
@@ -111,6 +117,7 @@ def process_polyline(entity, ctx, out: ExtractionResult, cfg: ExtractionConfig) 
                     "ENTITY_NOT_IN_XY_PLANE",
                     handle=entity_handle(entity),
                     dxftype=entity.dxftype(),
+                    layer=entity.dxf.layer,
                     block_path=ctx.block_path,
                 )
             )

@@ -12,6 +12,7 @@ def source_trace(entity, *, layout: str, block_path: list[str]) -> SourceTrace:
     return SourceTrace(
         handle=entity_handle(entity),
         dxftype=entity.dxftype(),
+        layer=str(getattr(entity.dxf, "layer", "0")),
         layout=layout,
         block_path=list(block_path),
     )

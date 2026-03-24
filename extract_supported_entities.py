@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from dataclasses import asdict
 from pathlib import Path
 
@@ -30,8 +31,12 @@ def _build_parser() -> argparse.ArgumentParser:
         "-o",
         "--output",
         type=Path,
-        default=Path("extraction_result.json"),
-        help="Path for output JSON (default: extraction_result.json).",
+        help="Path for output JSON. Defaults to <input>.json if omitted.",
+    )
+    parser.add_argument(
+        "--stdout",
+        action="store_true",
+        help="Print JSON output to stdout in addition to or instead of writing to a file.",
     )
     parser.add_argument("--abs-tol", type=float, default=1e-9)
     parser.add_argument("--rel-tol", type=float, default=1e-9)
@@ -68,15 +73,25 @@ def main() -> int:
 
     result = extract_geometry(str(input_path), cfg)
     payload = asdict(result)
+    json_data = json.dumps(payload, indent=2)
 
-    out_path: Path = args.output.resolve()
-    out_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    if args.stdout:
+        print(json_data)
 
-    print(f"Input: {input_path}")
-    print(f"Circles: {len(result.circles)}")
-    print(f"Closed polylines: {len(result.closed_polylines)}")
-    print(f"Diagnostics: {len(result.diagnostics)}")
-    print(f"Wrote: {out_path}")
+    out_path: Path | None = args.output
+    if out_path is None and not args.stdout:
+        out_path = input_path.with_suffix(".json")
+
+    if out_path:
+        out_path = out_path.resolve()
+        out_path.write_text(json_data, encoding="utf-8")
+
+    print(f"Input: {input_path}", file=sys.stderr)
+    print(f"Circles: {len(result.circles)}", file=sys.stderr)
+    print(f"Closed polylines: {len(result.closed_polylines)}", file=sys.stderr)
+    print(f"Diagnostics: {len(result.diagnostics)}", file=sys.stderr)
+    if out_path:
+        print(f"Wrote: {out_path}", file=sys.stderr)
     return 0
 
 

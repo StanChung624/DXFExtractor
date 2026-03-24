@@ -8,7 +8,7 @@ from dxf_extract import ExtractionConfig, extract_from_doc
 def test_direct_circle_modelspace() -> None:
     doc = ezdxf.new("R2010")
     msp = doc.modelspace()
-    msp.add_circle((1.0, 2.0), 3.0)
+    msp.add_circle((1.0, 2.0), 3.0, dxfattribs={"layer": "BUMP_LAYER"})
 
     out = extract_from_doc(doc)
 
@@ -18,6 +18,7 @@ def test_direct_circle_modelspace() -> None:
     assert c.radius == 3.0
     assert c.source is not None
     assert c.source.dxftype == "CIRCLE"
+    assert c.source.layer == "BUMP_LAYER"
     assert c.source.block_path == []
 
 

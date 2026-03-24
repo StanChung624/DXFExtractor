@@ -26,6 +26,7 @@ def make_diagnostic(
     message: str | None = None,
     handle: str | None = None,
     dxftype: str | None = None,
+    layer: str | None = None,
     block_path: list[str] | None = None,
 ) -> Diagnostic:
     return Diagnostic(
@@ -34,6 +35,7 @@ def make_diagnostic(
         message=message or _MESSAGES.get(code, code),
         handle=handle,
         dxftype=dxftype,
+        layer=layer,
         block_path=list(block_path or []),
     )
 
